@@ -16,20 +16,18 @@ interface BannerProps {
 
 export const Banner: React.FC<BannerProps> = ({ user, onEdit, onNotify }) => {
   return (
-    <section className="relative overflow-visible rounded-3xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/50">
-      <div className="relative h-48 w-full rounded-t-3xl">
-        <div className="absolute inset-0 overflow-hidden rounded-t-3xl">
-          {user.bannerUrl ? (
-            <img
-              src={user.bannerUrl}
-              alt="Profile banner"
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <div className="h-full w-full bg-gradient-to-r from-slate-900 via-slate-800 to-blue-900" />
-          )}
-        </div>
-        <div className="absolute inset-0 rounded-t-3xl bg-gradient-to-t from-slate-950 via-slate-950/60" />
+    <section className="relative rounded-3xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/50">
+      <div className="relative h-48 w-full overflow-hidden rounded-t-3xl">
+        {user.bannerUrl ? (
+          <img
+            src={user.bannerUrl}
+            alt="Profile banner"
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <div className="h-full w-full bg-gradient-to-r from-slate-900 via-slate-800 to-blue-900" />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60" />
       </div>
       <div className="px-6 pb-6 pt-6 sm:px-8 sm:pb-8">
         <div className="-mt-20 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
