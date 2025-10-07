@@ -16,7 +16,8 @@ interface BannerProps {
 
 export const Banner: React.FC<BannerProps> = ({ user, onEdit, onNotify }) => {
   return (
-    <section className="relative rounded-3xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/50">
+    <section className="relative overflow-visible rounded-3xl border border-slate-800 bg-slate-950/80 shadow-lg shadow-slate-950/50">
+      {/* Only the inner wrapper clips the banner image; outer stays overflow-visible */}
       <div className="relative h-48 w-full overflow-hidden rounded-t-3xl">
         {user.bannerUrl ? (
           <img
@@ -27,11 +28,12 @@ export const Banner: React.FC<BannerProps> = ({ user, onEdit, onNotify }) => {
         ) : (
           <div className="h-full w-full bg-gradient-to-r from-slate-900 via-slate-800 to-blue-900" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60" />
+        {/* Put the overlay under the avatar and ignore pointer events */}
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-slate-950 via-slate-950/60 z-0" />
       </div>
       <div className="px-6 pb-6 pt-6 sm:px-8 sm:pb-8">
-        <div className="-mt-20 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div className="flex items-end gap-4">
+        <div className="-mt-20 relative z-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="relative z-20 flex items-end gap-4">
             <img
               src={user.avatarUrl}
               alt={`${user.handle} avatar`}
